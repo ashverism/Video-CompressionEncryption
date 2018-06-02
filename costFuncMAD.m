@@ -6,8 +6,7 @@
 %
 % Output
 %       cost : The MAD for the two blocks
-%
-% Written by Aroh Barjatya
+
 
 
 function cost = costFuncMAD(currentBlk,refBlk, n)
@@ -20,4 +19,3 @@ for i = 1:n
     end
 end
 cost = err / (n*n);
-

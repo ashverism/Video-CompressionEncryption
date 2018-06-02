@@ -1,3 +1,6 @@
+%Creating an uncompressed RGB sub-video dataset
+%out of an original compressed lenghty video
+
 a = VideoReader('testvideo.mp4');
 outp = VideoWriter('extractedtestvideo.avi', 'Uncompressed AVI');
 outp.FrameRate = 30;

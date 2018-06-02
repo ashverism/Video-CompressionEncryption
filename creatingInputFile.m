@@ -1,3 +1,6 @@
+%Utility function to convert a YUV Domain video data
+%Into an RGB Format data
+
 input = VideoReader('reporter.yuv');
 row = input.Height;
 col = input.Width;

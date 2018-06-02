@@ -1,7 +1,10 @@
-//This file is run to compute the PSNR of the reconstructed video file
-//against the original video file
+%This file is run to compute the PSNR of the reconstructed video file
+%against the original video file
 
-original = VideoReader('OutputTest1.avi'); //Original file
+%Original file
+original = VideoReader('OutputTest1.avi');
+
+//Reconstructed file
 compressed = VideoReader('newinputsmall.avi'); //Reconstructed file
 
 frames = original.NumberOfFrames;
@@ -33,9 +36,8 @@ for f = 1:frames
     psnr(1, f) = 10 * log10((255*255)/sumerr);
 end
 
-//Writes three data viz. PSNR, MSE and Entropy in to spreadsheet files
+%Writes three data viz. PSNR, MSE and Entropy in to spreadsheet files
 
 xlswrite('psnrOfVideoTest1.xls', psnr);
 xlswrite('mseOfVideoTest1.xls', mse);
 xlswrite('entropyOfVideoTest1.xls', entr);
-

@@ -1,3 +1,9 @@
+%Implementing compression using Motion estimation
+%Takes the frames as the input and generates the Motion Vectors
+%Returns the Motion Vectors back to the callee and the scheme used is
+%Static IBBPBBPBBPBBI...
+%A dynamic code can be written and is expected to be pulled from a contributor 
+
 function [codebooks, indexClosestMatch, motionVectorsP, motionVectorsB] = compress( imgFrames, pVQ, nVQ, mbSize, pMotionEst)
 
     [row, col, frames] = size(imgFrames);
@@ -16,8 +22,8 @@ function [codebooks, indexClosestMatch, motionVectorsP, motionVectorsB] = compre
     cbcnt=1;
     codebook = zeros( nVQ, pVQ*pVQ);
     fprintf('compression started \n');
-    for i = 1 : 12 : numGoP*12 
-        
+    for i = 1 : 12 : numGoP*12
+
         fprintf('Iterations\n');
         iF = i;
         p1 = i+3;
@@ -77,4 +83,3 @@ function [codebooks, indexClosestMatch, motionVectorsP, motionVectorsB] = compre
         bcnt = bcnt + 8;
     end
 end
-
