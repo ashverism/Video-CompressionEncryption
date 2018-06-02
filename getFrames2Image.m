@@ -1,3 +1,4 @@
+%Helper function to output frames of video dataset to RGB images
 a=VideoReader('CompressedVideo_AVQ.avi')
 for img=1:a.NumberOfFrames
     b=read(a,img);

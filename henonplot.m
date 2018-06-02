@@ -1,3 +1,5 @@
+%Function to plot the henon map in a figure on matlab
+%Uncomment the last line
 function henonplot
 x(1)= 0.44;
 y(1)= 0.99;

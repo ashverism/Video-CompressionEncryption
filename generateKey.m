@@ -1,3 +1,5 @@
+%Generating Henon map sequence in one dimension
+
 function [keyArr] = generateKey(cVQ)
 	n = 10523;
 	a = 1.4;

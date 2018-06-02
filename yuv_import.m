@@ -1,3 +1,4 @@
+%Utility function to return  the Y, U, V frames from a yuv video dataset
 function [Y,U,V]=yuv_import(filename,dims,numfrm,startfrm,yuvformat)
 %Imports YUV sequence
 %[Y,U,V]=yuv_import(filename,dims,numfrm,startfrm)
@@ -9,14 +10,14 @@ function [Y,U,V]=yuv_import(filename,dims,numfrm,startfrm,yuvformat)
 % startfrm - [optional, default = 0] specifies from which frame to start reading
 %            with the convention that the first frame of the sequence is 0-
 %            numbered
-% yuvformat - [optional, default = 'YUV420_8']. YUV format, supported formats 
-%             are: 
-%             'YUV444_8' = 4:4:4 sampling, 8-bit precision 
+% yuvformat - [optional, default = 'YUV420_8']. YUV format, supported formats
+%             are:
+%             'YUV444_8' = 4:4:4 sampling, 8-bit precision
 %             'YUV420_8' = 4:2:0 sampling, 8-bit precision
 %             'YUV420_16' = 4:2:0 sampling, 16-bit precision
 %
 %Output:
-% Y, U ,V - cell arrays of Y, U and V components  
+% Y, U ,V - cell arrays of Y, U and V components
 %
 %Note:
 % Supported YUV formats are (corresponding yuvformat variable):
@@ -29,7 +30,7 @@ function [Y,U,V]=yuv_import(filename,dims,numfrm,startfrm,yuvformat)
 % [Y, U, V] = yuv_import('sequence.yuv',[1920 1080],2,0,'YUV420_16');
 
 fid=fopen(filename,'r');
-if (fid < 0) 
+if (fid < 0)
     error('File does not exist!');
 end;
 
@@ -63,10 +64,10 @@ U = cell(1,numfrm);
 V = cell(1,numfrm);
 for i=1:numfrm
     Yd = fread(fid,dims,inprec);
-    Y{i} = Yd';   
+    Y{i} = Yd';
     UVd = fread(fid,dimsUV,inprec);
     U{i} = UVd';
     UVd = fread(fid,dimsUV,inprec);
-    V{i} = UVd';    
+    V{i} = UVd';
 end;
 fclose(fid);

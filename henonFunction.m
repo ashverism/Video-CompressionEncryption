@@ -1,3 +1,4 @@
+%Create two dimensional Henon map  
 function [X, Y] = henon( x, y )
     a = 1.4;
     b = 0.3;

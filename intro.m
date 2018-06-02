@@ -1,3 +1,4 @@
+%Helper adopted function and not used in code
 clear all
 clc
 close all

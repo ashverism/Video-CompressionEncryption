@@ -1,3 +1,4 @@
+%Takes len as an argument and returns the Henon seq of that length
 function Inew = random_row(len)
 Inew(1:len) = -1;
 count = 1;

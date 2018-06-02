@@ -1,3 +1,5 @@
+%Initial project code for LBG Algorithm implementation
+%Using Vector Quantization
 clc;
 
 A=imread('lena.bmp');
@@ -24,19 +26,19 @@ indexCM=1;
 for i= 1 : p : row
 
     for j=1 : p : col
-       
+
         temp=getTV(i,j,A(:,:),n,p);
-        
+
         for l = 1 : n
-            
+
             tSet(indexCM,l)=temp(1,l);
-        
+
         end
-        
+
         indexCM=indexCM+1;
-    
+
     end
-    
+
 end
 
 temp=randi(Nb,1,Nc);
@@ -50,11 +52,11 @@ indexCM=1;
 for i = 1 : Nc
 
     for j=1 : n
-    
+
         codebook(i,j)=tSet( temp(1,i), j);
-    
+
     end
-    
+
 end
 
 
@@ -79,18 +81,18 @@ container_cb=zeros(Nc,n);
 count_container=ones(1,Nc);
 
 %This stores the indices of the closest codevector present in codebook with
-%a particular training vector 
+%a particular training vector
 
 indexClosestMatch=zeros(1,Nb);
 
 for i= 1 : Nb
-   
+
     index = ClosestMatch( tSet(i,:) , codebook(: , : ) );
-    
+
     indexClosestMatch(1,i)=index;
-    
+
     container_cb( index ,: ) =container_cb( index ,: ) + tSet(i,:);
-    
+
     count_container(1,index) = count_container(1,index) + 1;
 end
 %This updates the codebook using the container_cb
@@ -101,7 +103,7 @@ codebook=updateCodeBook(container_cb(:,:,:) , codebook(:,:) , count_container(:,
 
 distort_fact=distortion(codebook(:,:) , indexClosestMatch(:,:) , tSet(:,:) ) ;
 
-%This calculates the converence of distortion factor  
+%This calculates the converence of distortion factor
 
 x=abs(distort_fact_prev - distort_fact);
 

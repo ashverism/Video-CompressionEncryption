@@ -1,5 +1,5 @@
 function [ opVideo ] = decompress( codebooks, indexClosestMatch, motionVectorsP, motionVectorsB, row, col, pVQ, mbSize)
-%UNTITLED11 Summary of this function goes here
+% reconstrcuts the output video using the I frames and the motion vectors of P and B frames 
 %   Detailed explanation goes here
     [nVQ, x, numGoP] = size(codebooks);
     opVideo = zeros(row,col,numGoP*12+1);
@@ -33,4 +33,3 @@ function [ opVideo ] = decompress( codebooks, indexClosestMatch, motionVectorsP,
         opVideo(:,:,i*12+1) = iFrame2(:,:);
     end
 end
-

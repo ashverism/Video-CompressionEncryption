@@ -1,3 +1,8 @@
+%% The start of the codebook
+% Input a small Uncompressed AVI file to it to starts
+% The file must in the pwd
+
+
 clear all;
 close all;
 %%Initialising variables

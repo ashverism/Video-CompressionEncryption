@@ -1,9 +1,11 @@
+%Utility function to compare the print the PSNR of two different video files
+% frame vise frame
 function psnrarr = printPSNR(str1,str2)
 new = VideoReader(str1);
 old = VideoReader(str2);
 newFrame = new.NumberOfFrames;
 oldFrame = old.NumberOfFrames;
-if( newFrame ~= oldFrame || new.Height ~= old.Height || new.Width ~= old.Width) 
+if( newFrame ~= oldFrame || new.Height ~= old.Height || new.Width ~= old.Width)
     print "Error";
 end
 h = new.Height;

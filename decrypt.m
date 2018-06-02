@@ -1,7 +1,11 @@
+%Confusion created through Henon map is removed here
+%Since Henon map is a reversible encryption, the original vectors are recovered fully
+
+
 function [ indexClosestMatchE, pMotionVectorsE, bMotionVectorsE ] = decrypt(indexClosestMatch, pMotionVectors, bMotionVectors)
-   [row, col, depth] = size(indexClosestMatch);    
+   [row, col, depth] = size(indexClosestMatch);
    S = random_row(col);
-   indexClosestMatchE = zeros(row,col,depth); 
+   indexClosestMatchE = zeros(row,col,depth);
    for i = 1 : depth
        for j = 1 : col
             indexClosestMatchE(1,S(j),i) = indexClosestMatch(1,j,i);
@@ -22,6 +26,5 @@ function [ indexClosestMatchE, pMotionVectorsE, bMotionVectorsE ] = decrypt(inde
        for j = 1 : row
             bMotionVectorsE(S3(j),:,i) = bMotionVectors(j,:,i);
        end
-   end 
+   end
 end
-

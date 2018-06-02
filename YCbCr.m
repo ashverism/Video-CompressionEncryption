@@ -1,5 +1,6 @@
+%Get the frames Y, Cb, Cr frames from the RGB image img
 function [ y, cb, cr ] = YCbCr( img )
-% returns y cb cr  
+% returns y cb cr
 %   https://msdn.microsoft.com/en-us/library/windows/desktop/bb530104(v=vs.85).aspx
     [row, col, depth] = size(img);
     y = zeros(row,col);
@@ -9,10 +10,10 @@ function [ y, cb, cr ] = YCbCr( img )
     cr = zeros(row,col);
     cr = double(cr);
     img = double(img);
-    img = img/255; 
+    img = img/255;
     for i = 1 : row
         for j = 1 : col
-            r = img(i,j,1); 
+            r = img(i,j,1);
             g = img(i,j,2);
             b = img(i,j,3);
             y1 = 0.299*r + 0.587*g + 0.114*b;
@@ -24,4 +25,3 @@ function [ y, cb, cr ] = YCbCr( img )
         end
     end
 end
-

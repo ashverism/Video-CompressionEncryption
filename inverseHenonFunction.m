@@ -1,3 +1,4 @@
+%Create the inverse Henon map
 function [x, y] = henon( X, Y )
     a = 1.4;
     b = 0.3;

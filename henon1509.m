@@ -1,9 +1,9 @@
-
+% Adopted code to generate Henon map visualization
     clc;
     clear all;
     close all;
     M = imread('lena1.bmp');
-    figure,imshow(M); 
+    figure,imshow(M);
     rounds = 1;
     [row col]=size(M);
     M_New = M;
@@ -15,7 +15,7 @@
     b = 0.3;
     i = 1;
 
-    for i = 1:row   
+    for i = 1:row
 %           for j = 1:col
              x(i+1)= 1+y(i)-a*(x(i))^2;
              y(i+1)= b*x(i);
@@ -29,33 +29,33 @@
     final_sort_c_index = transpose(sort_c_index);
     D = sortrows( final_sort_c_index);
     D_Index=D(:,2);
-    
+
     d_index = vertcat(d,1:512);
     sort_d_index = sortrows(d_index,1);
     sort_d_index = sortrows(d_index,2);
     final_sort_d_index = transpose(sort_d_index);
     DD = sortrows( final_sort_d_index);
     DD_Index = DD(:,2);
-    
+
 % % % % % % % % % % % %     shuffling
 
-    
+
 for i= 1 : row
 		for j = 1 : col
-			        M_New1(i,j) = M_New(D_Index(i),j);	                
+			        M_New1(i,j) = M_New(D_Index(i),j);
         end
 end
      M_New1 = M_New;
-    
+
 for i= 1 : row
 		for j= 1 : col
-			        M_New1(i,j) = M_New(i,DD_Index(j));          
+			        M_New1(i,j) = M_New(i,DD_Index(j));
         end
 end
 % figure,imshow (M_New1);
 
 %%%%%%%%%     BITPLANE DECOMPOSITION
-cd = double(M_New1); 
+cd = double(M_New1);
 %imshow(cd/255);
 c0 = mod(cd,2);
 %   figure,imshow(c0);
@@ -92,13 +92,13 @@ b = 0.341734 ;
 for i=2:N
     %for j = 1:N
     xx(i)= 1+yy(i-1)-a*(xx(i-1))^2;
-    yy(i)= b*xx(i-1);   
+    yy(i)= b*xx(i-1);
 end
 
 
 l=1;
 bb=1;
- 
+
 for i = 1:row
     for j= 1:col
         t(bb,l)= xx(i)+yy(j);
@@ -107,10 +107,10 @@ for i = 1:row
                l=1;
             else
             l=l+1;
-            end     
+            end
     end
 end
-%normalize the key 
+%normalize the key
 Z1 = t - min(t(:));
 Z1 = Z1 ./ max(Z1(:));
 
@@ -146,7 +146,7 @@ bw7 = edge(w,'sobel',rand);
 bw8 = edge(w,'log',rand);
 %zsubplot(2,2,4);
 % figure,imshow(bw8);
- 
+
 
 %%%% bitxor of edge plane and bitplanes%%%%
 e0 = bitxor(c0,bw1);
@@ -172,7 +172,7 @@ e11= 2*(2*(2*(2*(2*(2*(2*e7+e6)+e5)+e4)+e3)+e2)+e1)+e0;
 
 rounds = rounds - 1;
 
-    end   
+    end
     % imwrite(e11,'e13.bmp',uint8);
  imhist(uint8(e11));
  nn = entropy(uint8(e11));
@@ -201,50 +201,50 @@ imshow(uint8(cc));
 
 for i= 1 : row :-1:1
 		for j= 1 : col
-		 cc(i,j) = M_New(i,DD_Index(j));          
+		 cc(i,j) = M_New(i,DD_Index(j));
         end
 end
 
 for i= 1 : row
 		for j = 1 : col :-1:1
-		 cc(i,j) = M_New(D_Index(i),j);	                
+		 cc(i,j) = M_New(D_Index(i),j);
         end
 end
 figure,imshow(M_New);
 
 %  %%%%%%% correlation coffecient
-x1 = M(:,1:end-1,1);  
+x1 = M(:,1:end-1,1);
 y1 = M(:,2:end,1);
 hori_xy = corr2(x1,y1);
 disp(hori_xy);
-x11 = e11(:,1:end-1,1);  
+x11 = e11(:,1:end-1,1);
 y11 = e11(:,2:end,1);
 hen_xy = corr2(x11,y11);
 disp(hen_xy);
 
 
 %%%%%vertical
-x2 = M(1:end-1,:,1);  
+x2 = M(1:end-1,:,1);
 y2 = M(2:end,:,1);
 vori_xy = corr2(x2,y2);
 disp(vori_xy);
-x22 = e11(1:end-1,:,1); 
+x22 = e11(1:end-1,:,1);
 y22 = e11(2:end,:,1);
 ven_xy = corr2(x22,y22);
 disp(ven_xy);
 
 % % % %diagonal
-x3 = M(1:end-1,1:end-1,1);  
+x3 = M(1:end-1,1:end-1,1);
 y3 = M(2:end,2:end,1);
 dori_xy = corr2(x3,y3);
 disp(dori_xy);
-x33 = e11(1:end-1,1:end-1,1);  
+x33 = e11(1:end-1,1:end-1,1);
 y33 = e11(2:end,2:end,1);
 den_xy = corr2(x33,y33);
 disp(den_xy);
 
 
- 
+
 % % % % % % %  to calculate cipher text attack
 m1 =imread('ency.bmp');
 m2 = imread('ency1.bmp');
@@ -267,7 +267,7 @@ for i=1:r
         end
     end
 end
-                                                     
+
 sum2=0;
 for i=1:r
     for j=1:c
@@ -279,7 +279,7 @@ disp(npcr1);
 % % % % % % % % % % % % % % % %  PSNR
 % peaksnr = psnr(,ency1);
 
-% 
+%
 m1 =imread('ency1.bmp');
 m2 = imread('ency.bmp');
 % m1(3,3)=231;
@@ -301,7 +301,7 @@ for i=1:r
         end
     end
 end
-                                                     
+
 sum= sum /[r*c];
 n = sum*100;
 disp(n)
@@ -326,7 +326,7 @@ for i=1:r
         end
     end
 end
-                                                     
+
 sum2=0;
 for i=1:r
     for j=1:c
@@ -335,4 +335,3 @@ sum2=sum2+D(i,j);
 end
 npcr1 =sum2*100/(r*c);
 disp(npcr1);
-
